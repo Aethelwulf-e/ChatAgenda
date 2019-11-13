@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "40156876757",
+    "firebase_url": "https://agendachat-45286.firebaseio.com",
+    "project_id": "agendachat-45286",
+    "storage_bucket": "agendachat-45286.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40156876757:android:1d2e148a0af3be7d3eb75c",
+        "android_client_info": {
+          "package_name": "com.ufc.br.chatagenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40156876757-3t4g65r770i7ffps2ep3pkr1r0hu3pt4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ufc.br.chatagenda",
+            "certificate_hash": "670ba543a4d69aeef215b9e452030334a766608c"
+          }
+        },
+        {
+          "client_id": "40156876757-7jk8gr2g86iihvs58a123p8dr1i0ukuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqomxCho-kx6Bar61lCJDrCJea5Ow2Skc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40156876757-7jk8gr2g86iihvs58a123p8dr1i0ukuf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
