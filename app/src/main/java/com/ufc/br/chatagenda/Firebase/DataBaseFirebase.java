@@ -3,12 +3,11 @@ package com.ufc.br.chatagenda.Firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class DataBaseFirebase implements Database {
-    //
+public class DataBaseFirebase{
 
-    public static DataBaseFirebase dataBase = null;
-    public static FirebaseDatabase firebaseDatabase = null;
-    public static DatabaseReference databaseReference = null;
+    private static DataBaseFirebase dataBase = null;
+    private static FirebaseDatabase firebaseDatabase = null;
+    private static DatabaseReference databaseReference = null;
 
     private DataBaseFirebase(){ }
 
@@ -27,6 +26,10 @@ public class DataBaseFirebase implements Database {
 
         return dataBase;
 
+    }
+
+    public DatabaseReference reference(){
+        return databaseReference;
     }
 
 }
