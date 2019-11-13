@@ -6,9 +6,9 @@ import com.google.firebase.database.FirebaseDatabase;
 public class DataBaseFirebase implements Database {
     //
 
-    private static DataBaseFirebase dataBase = null;
-    private static FirebaseDatabase firebaseDatabase = null;
-    private static DatabaseReference databaseReference = null;
+    public static DataBaseFirebase dataBase = null;
+    public static FirebaseDatabase firebaseDatabase = null;
+    public static DatabaseReference databaseReference = null;
 
     private DataBaseFirebase(){ }
 
