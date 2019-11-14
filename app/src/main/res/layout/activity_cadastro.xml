@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".CadastroActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -17,41 +17,51 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextNumero"
+            android:id="@+id/editTextNomeCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Número"
-            android:inputType="phone"
+            android:hint="Digite seu nome"
+            android:inputType="textCapCharacters"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp" />
 
         <EditText
-            android:id="@+id/editTextSenha"
+            android:id="@+id/editTextNumeroCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Senha"
+            android:hint="Digite seu número"
+            android:inputType="phone"
+            android:layout_marginBottom="50dp" />
+
+        <EditText
+            android:id="@+id/editTextSenhaCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Escolha sua senha"
             android:layout_marginBottom="50dp"
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/buttonEntrar"
+            android:id="@+id/buttonConfirmarCadastro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingRight="60dp"
             android:paddingLeft="60dp"
             android:layout_marginBottom="30dp"
-            android:text="Entrar" />
+            android:text="Confirmar" />
 
         <Button
-            android:id="@+id/buttonCadastrar"
+            android:id="@+id/buttonCancelarCadastro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="48dp"
             android:paddingLeft="48dp"
             android:layout_gravity="center"
-            android:text="Cadastrar" />
+            android:text="Cancelar" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
