@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.firebase.FirebaseApp;
+import com.ufc.br.chatagenda.Firebase.DataBaseFirebase;
 
 public class MainActivity extends AppCompatActivity {
 
