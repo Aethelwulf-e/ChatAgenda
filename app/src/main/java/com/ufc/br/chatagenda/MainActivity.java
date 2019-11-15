@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.FirebaseApp;
-import com.ufc.br.chatagenda.Firebase.DBFirebase;
-import com.ufc.br.chatagenda.Firebase.MyDBFirebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -17,14 +17,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextNumero"
+            android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Número"
-            android:inputType="phone"
             android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp" />
+            android:layout_marginBottom="50dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/editTextSenha"

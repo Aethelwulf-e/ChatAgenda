@@ -1,5 +1,6 @@
 package com.ufc.br.chatagenda;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,13 +9,21 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.ufc.br.chatagenda.DAO.UserDAO;
-import com.ufc.br.chatagenda.Firebase.UserFirebase;
+import com.ufc.br.chatagenda.DAO.UserDAOFirebase;
+import com.ufc.br.chatagenda.Firebase.ConexaoAuth;
+import com.ufc.br.chatagenda.Firebase.MyConexaoAuth;
 import com.ufc.br.chatagenda.Model.User;
 
 public class CadastroActivity extends AppCompatActivity {
 
     UserDAO userDAO = null;
+    ConexaoAuth auth = null;
+
+    User novoUser = null;
 
     TextView nome = null;
     TextView numero = null;
@@ -37,7 +46,8 @@ public class CadastroActivity extends AppCompatActivity {
         confirmar = (Button) this.findViewById( R.id.buttonConfirmarCadastro );
         cancelar = (Button) this.findViewById( R.id.buttonCancelarCadastro );
 
-        userDAO = UserFirebase.getInstance();
+        userDAO = UserDAOFirebase.getInstance();
+        auth = MyConexaoAuth.getInstance();
 
         confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +73,26 @@ public class CadastroActivity extends AppCompatActivity {
         String email = this.email.getText().toString();
         String senha = this.senha.getText().toString();
 
-        User user = new User( nome, numero, email, senha );
+        novoUser = new User( nome, numero, email, senha );
 
-        userDAO.create(user);
+        auth.getFirebaseAuth().createUserWithEmailAndPassword( email,senha )
+                .addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-        Toast.makeText(CadastroActivity.this, "Cadastro Realizado", Toast.LENGTH_SHORT).show();
+                        if( task.isSuccessful() ){
+                            Toast.makeText(CadastroActivity.this, "Cadastro Ok", Toast.LENGTH_SHORT).show();
 
-        CadastroActivity.this.finish();
+                            while ( auth.getFirebaseAuth() == null ){}
+                            novoUser.setId( auth.getUser().getUid() );
+                            userDAO.create(novoUser);
+
+                        }else{
+                            Toast.makeText(CadastroActivity.this, "Cadastro Falho", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
 
     }
 

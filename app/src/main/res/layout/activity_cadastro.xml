@@ -41,8 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:ems="10"
-            android:hint="Digite seu email"
-            android:inputType="textCapCharacters" />
+            android:hint="Digite seu email" />
 
         <EditText
             android:id="@+id/editTextSenhaCadastro"
