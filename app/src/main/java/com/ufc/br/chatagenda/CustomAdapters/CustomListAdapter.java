@@ -46,7 +46,7 @@ public class CustomListAdapter extends BaseAdapter {
         TextView tv2 = rowView.findViewById(R.id.item2);
 
         String nome = users.get(position).getNome();
-        int numero = users.get(position).getNumero();
+        String numero = users.get(position).getNumero();
 
         tv1.setText(nome);
         tv1.setTextSize(15);

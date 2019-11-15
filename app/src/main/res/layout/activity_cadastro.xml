@@ -20,28 +20,37 @@
             android:id="@+id/editTextNomeCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
             android:ems="10"
             android:hint="Digite seu nome"
-            android:inputType="textCapCharacters"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp" />
+            android:inputType="textCapCharacters" />
 
         <EditText
             android:id="@+id/editTextNumeroCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:ems="10"
             android:hint="Digite seu número"
-            android:inputType="phone"
-            android:layout_marginBottom="50dp" />
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/editTextEmailCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:ems="10"
+            android:hint="Digite seu email"
+            android:inputType="textCapCharacters" />
 
         <EditText
             android:id="@+id/editTextSenhaCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:ems="10"
             android:hint="Escolha sua senha"
-            android:layout_marginBottom="50dp"
             android:inputType="textPassword" />
 
         <Button

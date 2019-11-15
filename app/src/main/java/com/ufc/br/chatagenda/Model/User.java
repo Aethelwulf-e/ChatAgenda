@@ -5,32 +5,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable {
-    private int id;
-    private int numero;
+    private String id;
+    private String numero;
     private String nome;
+    private String email;
     private String senha;
-    private List<User> amigos;
+    private List<User> contatos;
 
-    public User(int id, String nome, int numero, String senha) {
+    public User(){}
+
+    public User(String id, String nome, String numero, String email, String senha) {
         this.nome = nome;
         this.id = id;
         this.numero = numero;
+        this.email = email;
         this.senha = senha;
-        this.amigos = new ArrayList<User>();
+        this.contatos = new ArrayList<User>();
     }
 
-    public User(String nome, int numero, String senha) {
+    public User(String nome, String numero, String email, String senha) {
         this.nome = nome;
         this.numero = numero;
         this.senha = senha;
-        this.amigos = new ArrayList<User>();
+        this.email = email;
+        this.contatos = new ArrayList<User>();
     }
 
-    public int getId() {
+    public User(String nome, String numero, String email, String senha, ArrayList<User> contatos) {
+        this.nome = nome;
+        this.numero = numero;
+        this.senha = senha;
+        this.email = email;
+        this.contatos = contatos;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,12 +55,20 @@ public class User implements Serializable {
         this.nome = nome;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {
@@ -58,11 +79,11 @@ public class User implements Serializable {
         this.senha = senha;
     }
 
-    public void addAmigo(User amigo) {
+    public void addContato(User contato) {
 
     }
 
-    public void deleteAmigo(int id) {
+    public void deleteContato(int id) {
 
     }
 }
