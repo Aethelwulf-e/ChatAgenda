@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
+import com.ufc.br.chatagenda.Model.Contato;
 import com.ufc.br.chatagenda.Model.User;
 import com.ufc.br.chatagenda.R;
 
@@ -15,9 +16,9 @@ import java.util.List;
 
 public class CustomListAdapter extends BaseAdapter {
     private Activity context;
-    private List<User> users;
+    private List<Contato> users;
 
-    public CustomListAdapter(Activity context, List<User> users) {
+    public CustomListAdapter(Activity context, List<Contato> users) {
         this.context = context;
         this.users = users;
     }

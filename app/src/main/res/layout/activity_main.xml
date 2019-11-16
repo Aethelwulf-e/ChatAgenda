@@ -16,42 +16,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            android:text="Login"
+            android:textColor="#2962FF"
+            android:textSize="25dp" />
+
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="45dp"
             android:ems="10"
             android:hint="Email"
-            android:inputType="phone" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/editTextSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:ems="10"
             android:hint="Senha"
-            android:layout_marginBottom="50dp"
             android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textViewError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TextView"
+            android:textColor="#DD2C00" />
 
         <Button
             android:id="@+id/buttonEntrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingRight="60dp"
+            android:layout_marginBottom="10dp"
+            android:background="#00C853"
             android:paddingLeft="60dp"
-            android:layout_marginBottom="30dp"
+            android:paddingRight="60dp"
             android:text="Entrar" />
 
         <Button
             android:id="@+id/buttonCadastrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="48dp"
-            android:paddingLeft="48dp"
             android:layout_gravity="center"
+            android:background="#00B8D4"
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp"
             android:text="Cadastrar" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

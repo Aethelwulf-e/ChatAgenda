@@ -10,7 +10,7 @@ public class User implements Serializable {
     private String nome;
     private String email;
     private String senha;
-    private List<User> contatos;
+    private List<Contato> contatos;
 
     public User(){}
 
@@ -20,7 +20,7 @@ public class User implements Serializable {
         this.numero = numero;
         this.email = email;
         this.senha = senha;
-        this.contatos = new ArrayList<User>();
+        this.contatos = new ArrayList<Contato>();
     }
 
     public User(String nome, String numero, String email, String senha) {
@@ -28,10 +28,10 @@ public class User implements Serializable {
         this.numero = numero;
         this.senha = senha;
         this.email = email;
-        this.contatos = new ArrayList<User>();
+        this.contatos = new ArrayList<Contato>();
     }
 
-    public User(String nome, String numero, String email, String senha, ArrayList<User> contatos) {
+    public User(String nome, String numero, String email, String senha, ArrayList<Contato> contatos) {
         this.nome = nome;
         this.numero = numero;
         this.senha = senha;
@@ -79,11 +79,4 @@ public class User implements Serializable {
         this.senha = senha;
     }
 
-    public void addContato(User contato) {
-
-    }
-
-    public void deleteContato(int id) {
-
-    }
 }
