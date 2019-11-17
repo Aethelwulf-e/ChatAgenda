@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -44,16 +45,12 @@ public class CustomListAdapter extends BaseAdapter {
         View rowView = li.inflate(R.layout.custom_list_layout, null, true);
 
         TextView tv1 = rowView.findViewById(R.id.item1);
-        TextView tv2 = rowView.findViewById(R.id.item2);
+        ImageView imageView = rowView.findViewById(R.id.imageViewIcon);
 
         String nome = users.get(position).getNome();
-        String numero = users.get(position).getNumero();
 
         tv1.setText(nome);
-        tv1.setTextSize(15);
-
-        tv2.setText(String.valueOf(numero));
-        tv2.setTextSize(12);
+        imageView.setImageResource(R.mipmap.ic_contato);
 
         return rowView;
     }

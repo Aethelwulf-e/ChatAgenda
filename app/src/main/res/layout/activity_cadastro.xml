@@ -54,7 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Digite seu email" />
+            android:hint="Digite seu email"
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/textViewErrorEmail"

@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,9 +31,15 @@ public class ListaContatosActivity extends AppCompatActivity {
     ConexaoAuth auth = null;
     ConexaoDB dataBase = null;
 
+    String Uid;
+
     ListView listView = null;
     ArrayList<Contato> contatos = null;
     CustomListAdapter adapter = null;
+
+    int selecionado = -1;
+
+    Intent intentDetalhes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +53,41 @@ public class ListaContatosActivity extends AppCompatActivity {
 
         contatos = new ArrayList<Contato>();
         listView = this.findViewById( R.id.listaContatos );
-        ReadAll( auth.getUser().getUid() );
+
+        Uid = auth.getUser().getUid();
+
+        ReadAll();
 
         adapter = new CustomListAdapter(ListaContatosActivity.this, contatos);
         listView.setAdapter(adapter);
 
+        listView.setChoiceMode( ListView.CHOICE_MODE_SINGLE );
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selecionado = i;
+                listView.setSelection(i);
+                listView.setSelector(android.R.color.holo_blue_light);
+
+            }
+        });
+
+        intentDetalhes = new Intent(ListaContatosActivity.this,DetalhesActivity.class);
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                intentDetalhes.putExtra("Contato",contatos.get(i));
+                startActivity(intentDetalhes);
+                return true;
+            }
+        });
+
     }
 
-    private void ReadAll(String uid) {
+    private void ReadAll() {
 
-        Query query = dataBase.getReference().child("Contatos").child(uid).orderByChild("nome");
+        Query query = dataBase.getReference().child("Contatos").child(Uid).orderByChild("nome");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -78,6 +112,35 @@ public class ListaContatosActivity extends AppCompatActivity {
 
     }
 
+    public void update(){
+
+        Intent intent;
+
+        if (selecionado >= 0 && selecionado < contatos.size()) {
+            intent = new Intent(ListaContatosActivity.this, AddContatoActivity.class);
+            intent.putExtra("Contato", contatos.get(selecionado));
+            intent.putExtra("Request","UPD");
+            startActivityForResult(intent,222);
+        }
+
+    }
+
+    public void  delete() {
+
+        if (selecionado >= 0 && selecionado < contatos.size()) {
+
+            Contato c = contatos.get(selecionado);
+
+            dataBase.getReference().child("Contatos").child(Uid).child(c.getId()).removeValue();
+            contatos.remove(selecionado);
+            adapter.notifyDataSetChanged();
+
+
+        } else {
+            Toast.makeText(ListaContatosActivity.this, "Selecione um elemento", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -94,13 +157,18 @@ public class ListaContatosActivity extends AppCompatActivity {
             case R.id.menu_ADD:
 
                 intent = new Intent(ListaContatosActivity.this, AddContatoActivity.class);
-                startActivity(intent);
+                intent.putExtra("Request","ADD");
+                startActivityForResult(intent,111);
 
                 break;
             case R.id.menu_DEL:
 
+                delete();
+
                 break;
             case R.id.menu_UPD:
+
+                update();
 
                 break;
         }

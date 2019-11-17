@@ -1,25 +1,24 @@
 package com.ufc.br.chatagenda.Model;
 
-public class Contato {
+import java.io.Serializable;
+
+public class Contato implements Serializable {
 
     private String id;
     private String numero;
     private String nome;
-    private String email;
 
     public Contato(){}
 
-    public Contato( String id, String nome, String numero, String email ){
+    public Contato( String id, String nome, String numero ){
         this.nome = nome;
         this.id = id;
         this.numero = numero;
-        this.email = email;
     }
 
-    public Contato( String nome, String numero, String email ) {
+    public Contato( String nome, String numero ) {
         this.nome = nome;
         this.numero = numero;
-        this.email = email;
     }
 
     public String getId() {
@@ -46,11 +45,4 @@ public class Contato {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

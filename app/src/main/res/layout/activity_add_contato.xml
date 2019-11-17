@@ -45,21 +45,7 @@
             android:id="@+id/textViewNumeroError"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextViewo inválido" />
-
-        <EditText
-            android:id="@+id/editTextEmailContato"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Digite o email do contato" />
-
-        <TextView
-            android:id="@+id/textViewEmailError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email inválido" />
+            android:text="Número inválido" />
 
         <Button
             android:id="@+id/buttonConfirmarCadastro"

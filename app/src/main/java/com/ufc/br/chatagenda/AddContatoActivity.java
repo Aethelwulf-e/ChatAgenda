@@ -3,6 +3,7 @@ package com.ufc.br.chatagenda;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,16 +30,17 @@ public class AddContatoActivity extends AppCompatActivity {
 
     EditText nome = null;
     EditText numero = null;
-    EditText email = null;
 
     TextView nomeError = null;
     TextView numeroError = null;
-    TextView emailError = null;
 
     Button confirmar = null;
     Button cancelar = null;
 
-    public ConexaoDB dbFirebase = null;
+    ConexaoDB dbFirebase = null;
+
+    Contato contato = null;
+    String request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +52,20 @@ public class AddContatoActivity extends AppCompatActivity {
 
         nome = this.findViewById( R.id.editTextNomeContato );
         numero = this.findViewById( R.id.editTextNumeroContato );
-        email = this.findViewById( R.id.editTextEmailContato );
 
         nomeError = this.findViewById( R.id.textViewNomeError );
         numeroError = this.findViewById( R.id.textViewNumeroError );
-        emailError = this.findViewById( R.id.textViewEmailError );
 
         nomeError.setTextColor( getResources().getColor(android.R.color.transparent) );
-        emailError.setTextColor( getResources().getColor(android.R.color.transparent) );
         numeroError.setTextColor( getResources().getColor(android.R.color.transparent) );
+
+        request = (String) getIntent().getExtras().get("Request");
+
+        if( request.equals("UPD") ){
+            contato = (Contato)  getIntent().getSerializableExtra("Contato");
+            nome.setText(""+contato.getNome());
+            numero.setText(""+contato.getNumero());
+        }
 
         confirmar = this.findViewById( R.id.buttonConfirmarCadastro );
         confirmar.setOnClickListener(new View.OnClickListener() {
@@ -83,23 +90,23 @@ public class AddContatoActivity extends AppCompatActivity {
 
     private void ExistContato(){
 
-        String email = this.email.getText().toString();
+        String nome = this.nome.getText().toString();
         String numero = this.numero.getText().toString();
 
+        if( nome.equals("") ){
+            nomeError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
+            return;
+        }else{
+            nomeError.setTextColor( getResources().getColor(android.R.color.transparent) );
+        }
         if( numero.equals("") ){
             numeroError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
             return;
         }else{
             numeroError.setTextColor( getResources().getColor(android.R.color.transparent) );
         }
-        if( email.equals("") ){
-            emailError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
-            return;
-        }else{
-            emailError.setTextColor( getResources().getColor(android.R.color.transparent) );
-        }
 
-        Query query = dbFirebase.getReference().child("User").orderByChild("email").equalTo(email);
+        Query query = dbFirebase.getReference().child("User").orderByChild("numero").equalTo(numero);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,11 +119,11 @@ public class AddContatoActivity extends AppCompatActivity {
                 }
 
                 if( aux1.size() == 0 ){
-                    Toast.makeText(AddContatoActivity.this, "Esse contao não existe", Toast.LENGTH_SHORT).show();
-                    emailError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
+                    Toast.makeText(AddContatoActivity.this, "Esse número não existe", Toast.LENGTH_SHORT).show();
+                    numeroError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
                 }else{
                     Add(aux1.get(0).getId());
-                    Toast.makeText(AddContatoActivity.this, "Existe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddContatoActivity.this, "Adicionado", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -132,29 +139,9 @@ public class AddContatoActivity extends AppCompatActivity {
     private void Add(String idContato) {
 
         String nome = this.nome.getText().toString();
-        String email = this.email.getText().toString();
         String numero = this.numero.getText().toString();
 
-        if( nome.equals("") ){
-            nomeError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
-            return;
-        }else{
-            nomeError.setTextColor( getResources().getColor(android.R.color.transparent) );
-        }
-        if( numero.equals("") ){
-            numeroError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
-            return;
-        }else{
-            numeroError.setTextColor( getResources().getColor(android.R.color.transparent) );
-        }
-        if( email.equals("") ){
-            emailError.setTextColor( getResources().getColor(android.R.color.holo_red_light) );
-            return;
-        }else{
-            emailError.setTextColor( getResources().getColor(android.R.color.transparent) );
-        }
-
-        Contato contato = new Contato(nome,numero,email);
+        Contato contato = new Contato(idContato,nome,numero);
 
         dbFirebase.getReference().child("Contatos").child(auth.getUser().getUid()).child(idContato).setValue(contato);
         AddContatoActivity.this.finish();
