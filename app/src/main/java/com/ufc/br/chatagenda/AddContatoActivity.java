@@ -23,6 +23,9 @@ import com.ufc.br.chatagenda.Model.User;
 
 import java.util.ArrayList;
 
+
+// Teste
+
 public class AddContatoActivity extends AppCompatActivity {
 
     ConexaoAuth auth = null;
