@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.ufc.br.chatagenda.Firebase.ConexaoAuth;
 import com.ufc.br.chatagenda.Model.Contato;
 import com.ufc.br.chatagenda.Model.User;
 import com.ufc.br.chatagenda.R;
@@ -16,6 +17,8 @@ import com.ufc.br.chatagenda.R;
 import java.util.List;
 
 public class CustomListAdapter extends BaseAdapter {
+
+
     private Activity context;
     private List<Contato> users;
 
@@ -50,7 +53,7 @@ public class CustomListAdapter extends BaseAdapter {
         String nome = users.get(position).getNome();
 
         tv1.setText(nome);
-        imageView.setImageResource(R.mipmap.ic_contato);
+        imageView.setImageResource(R.mipmap.ic_contato2);
 
         return rowView;
     }
